@@ -108,7 +108,9 @@
         .main-content {
             padding: 60px 50px;
             width: 800px;
+            max-width: 100%;
             margin: 0 auto;
+            box-sizing: border-box;
         }
 
         header h1 {
@@ -172,12 +174,79 @@
         .github-btn i { margin-right: 10px; font-size: 1.2em; }
         .github-btn:hover { background-color: #333; text-decoration: none; color: white;}
 
-        /* Responsive Design */
-        @media (max-width: 1000px) {
+        /* Responsive Design — Tablet */
+        @media (max-width: 1100px) {
             body { flex-direction: column; }
-            .sidebar { width: 100%; position: relative; min-height: auto; padding: 40px 20px; }
-            .main-content { margin-left: 0; padding: 40px 20px; }
+            .sidebar { 
+                width: 100%; 
+                position: relative; 
+                min-height: auto; 
+                padding: 40px 30px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px 40px;
+            }
+            .sidebar-section { width: auto; margin-top: 15px; }
+            .main-content { 
+                margin-left: 0; 
+                padding: 40px 30px; 
+                width: 100%;
+                max-width: 800px;
+            }
             header h1 { font-size: 2.5em; }
+            #lang-toggle { position: fixed; top: 10px; right: 10px; z-index: 100; border-radius: 5px; font-size: 0.85em; }
+        }
+
+        /* Responsive Design — Mobile */
+        @media (max-width: 600px) {
+            .sidebar {
+                padding: 30px 20px;
+                flex-direction: column;
+                align-items: center;
+            }
+            .profile-img {
+                width: 130px;
+                height: 130px;
+            }
+            .sidebar-section { width: 100%; margin-top: 20px; }
+            .sidebar h3 { font-size: 0.8em; }
+            .contact-list li { font-size: 0.82em; margin-bottom: 10px; }
+            .main-content { 
+                padding: 25px 18px; 
+                width: 100%;
+                box-sizing: border-box;
+            }
+            header h1 { 
+                font-size: 1.8em; 
+                letter-spacing: 1px;
+            }
+            header .subtitle {
+                font-size: 0.8em;
+                padding: 5px 15px;
+                letter-spacing: 2px;
+            }
+            h2 { font-size: 1.2em; }
+            .experience-item h4, .project-item h4 { font-size: 1em; }
+            .experience-item .meta, .project-item .meta { font-size: 0.82em; }
+            .main-content li { font-size: 0.9em; }
+            .main-content p { font-size: 0.92em; }
+            .github-btn { 
+                font-size: 0.82em; 
+                padding: 10px 16px;
+                width: 100%;
+                justify-content: center;
+                box-sizing: border-box;
+            }
+            #lang-toggle { 
+                position: fixed; 
+                top: 8px; 
+                right: 8px; 
+                z-index: 100; 
+                padding: 8px 12px;
+                border-radius: 5px;
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
@@ -228,7 +297,7 @@
         <header>
             <h1>Gonzalo <br><strong>Montebelli</strong></h1>
             <div class="subtitle" id="subtitle">Data Analyst | Financial Data</div>
-            <button id="lang-toggle" onclick="toggleLang()" style="position: absolute; top: 20px; right: 20px; padding: 10px; background: var(--dark-bg); color: white; border: none; cursor: pointer;">ES</button>
+            <button id="lang-toggle" onclick="toggleLang()" style="position: fixed; top: 15px; right: 15px; padding: 10px 14px; background: var(--dark-bg); color: white; border: none; cursor: pointer; z-index: 100; border-radius: 5px; font-weight: 600; font-size: 0.9em;">ES</button>
         </header>
 
         <section>
