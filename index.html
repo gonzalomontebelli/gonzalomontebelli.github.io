@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gonzalo Montebelli | Portfolio Interactivo de Datos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --dark-bg: #111111;
+            --accent-blue: #3498db;
+            --link-hover: #5dade2;
+            --text-gray-light: #cccccc;
+            --sidebar-width: 450px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            display: flex;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- SIDEBAR IZQUIERDO (Estilo Negro) --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--dark-bg);
+            color: white;
+            min-height: 100vh;
+            padding: 50px 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Foto de perfil con link circular */
+        .profile-link {
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .profile-link:hover {
+            transform: scale(1.05);
+        }
+        .profile-img {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-blue);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Secciones del sidebar */
+        .sidebar-section {
+            width: 100%;
+            margin-top: 35px;
+        }
+
+        .sidebar h3 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1.5px;
+            color: white;
+        }
+
+        /* Links de Contacto y Social */
+        .contact-list, .cert-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .contact-list li {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: var(--text-gray-light);
+        }
+
+        .contact-list i {
+            width: 25px;
+            margin-right: 12px;
+            color: var(--accent-blue);
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        /* Estilo general de links en fondo negro */
+        .sidebar a {
+            color: var(--text-gray-light);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .main-content {
+            padding: 60px 50px;
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: 3.2em;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        header h1 strong {
+            color: #000;
+        }
+
+        header .subtitle {
+            background-color: black;
+            color: white;
+            display: inline-block;
+            padding: 6px 25px;
+            font-size: 0.95em;
+            letter-spacing: 3px;
+            margin-top: 15px;
+            font-weight: 300;
+        }
+
+        section { margin-top: 50px; }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            font-size: 1.5em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 12px;
+            color: #2c3e50;
+        }
+
+        h2 i { margin-right: 15px; color: var(--dark-bg); font-size: 0.9em; }
+
+        .experience-item, .project-item { margin-bottom: 35px; }
+        .experience-item h4, .project-item h4 { margin: 0 0 5px 0; color: #333; font-size: 1.15em; font-weight: 600; }
+        .experience-item .meta, .project-item .meta { font-style: italic; color: #7f8c8d; font-size: 0.9em; margin-bottom: 12px; display: block;}
+
+        .main-content ul { padding-left: 20px; margin-top: 5px; }
+        .main-content li { margin-bottom: 9px; font-size: 0.98em; color: #444; }
+
+        /* Botón interactivo para ver Proyectos/Certificaciones en GitHub */
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .github-btn i { margin-right: 10px; font-size: 1.2em; }
+        .github-btn:hover { background-color: #333; text-decoration: none; color: white;}
+
+        /* Responsive Design */
+        @media (max-width: 1000px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; position: relative; min-height: auto; padding: 40px 20px; }
+            .main-content { margin-left: 0; padding: 40px 20px; }
+            header h1 { font-size: 2.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <a href="https://www.linkedin.com/in/gonzalo-montebelli/" target="_blank" class="profile-link" title="Ver perfil de LinkedIn">
+            <img src="foto.jpg" alt="Gonzalo Montebelli" class="profile-img">
+        </a>
+        
+        <div class="sidebar-section">
+            <h3 id="contact-title">Contact & Networks</h3>
+            <ul class="contact-list">
+                <li><i class="fas fa-phone"></i> 664-240-515</li>
+                <li><i class="fas fa-envelope"></i> <a href="mailto:gonzalomontebelli@outlook.com">gonzalomontebelli@outlook.com</a></li>
+                <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/gonzalo-montebelli/" target="_blank">linkedin.com/in/gonzalo-montebelli</a></li>
+                <li><i class="fab fa-github"></i> <a href="https://github.com/gonzalomontebelli" target="_blank">github.com/gonzalomontebelli</a></li>
+                <li><i class="fas fa-map-marker-alt"></i> Madrid, España</li>
+            </ul>
+        </div>
+
+        <div class="sidebar-section">
+            <h3 id="cert-title">Interactive Certifications</h3>
+            <p id="cert-desc" style="font-size:0.8em; color:#888; margin-top:-10px; margin-bottom:15px;">(Click to verify credential)</p>
+            <ul class="contact-list cert-list">
+                <li><i class="fas fa-certificate"></i> <a href="https://www.coursera.org/professional-certificates/google-data-analytics" target="_blank">Google Data Analytics</a></li>
+                <li><i class="fas fa-certificate"></i> <a href="https://www.coursera.org/learn/financial-markets-global" target="_blank">Financial Markets (Yale)</a></li>
+                <li><i class="fas fa-certificate"></i> <a href="https://www.coursera.org/learn/data-analysis-with-python" target="_blank">Data Analysis with Python (IBM)</a></li>
+                <li><i class="fas fa-certificate"></i> <a href="https://www.coursera.org/learn/sql-for-data-science" target="_blank">SQL for Data Science (UC Davis)</a></li>
+                <li><i class="fas fa-certificate"></i> <a href="https://www.coursera.org/learn/excel-skills-for-business" target="_blank">Excel Skills for Business (Macquarie)</a></li>
+                <li><i class="fas fa-certificate"></i> <a href="https://www.coursera.org/learn/stanford-statistics" target="_blank">Introduction to Statistics (Stanford)</a></li>
+                <li><i class="fas fa-certificate"></i> <a href="https://www.coursera.org/specializations/data-visualization-tableau" target="_blank">Tableau & Data Visualization (Duke)</a></li>
+                <li><i class="fas fa-certificate"></i> <a href="https://www.theforage.com/completion-certificates/fMCqmt8qR4G85Puue/rKCBL7y5yKgzDGZmR_fMCqmt8qR4G85Puue_69b1b38b77cfefbfb6469082_1773259325108_completion_certificate.pdf" target="_blank">Bank of America - Global Markets Sales and Trading Analyst</a></li>
+                <li><i class="fas fa-certificate"></i> <a href="https://www.theforage.com/completion-certificates/Sj7temL583QAYpHXD/bWqaecPDbYAwSDqJy_Sj7temL583QAYpHXD_69b1b38b77cfefbfb6469082_1774616777271_completion_certificate.pdf" target="_blank">JPMorgan Chase & Co. — Quantitative Research Job Simulation</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-section">
+            <h3 id="lang-title">Languages</h3>
+            <ul class="contact-list">
+                <li id="lang-li1"><i class="fas fa-language"></i> Spanish: Native</li>
+                <li id="lang-li2"><i class="fas fa-language"></i> English: Intermediate / Advanced</li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <h1>Gonzalo <br><strong>Montebelli</strong></h1>
+            <div class="subtitle" id="subtitle">Data Analyst | Financial Data</div>
+            <button id="lang-toggle" onclick="toggleLang()" style="position: absolute; top: 20px; right: 20px; padding: 10px; background: var(--dark-bg); color: white; border: none; cursor: pointer;">ES</button>
+        </header>
+
+        <section>
+            <p id="bio">Focused on building data-driven projects in trading performance, market analysis, and financial reporting. Current focus: US30 analytics, backtesting, execution analysis, and financial dashboards.</p>
+        </section>
+
+        <section>
+            <h2 id="exp-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+            
+            <div class="experience-item">
+                <h4 id="exp1-title">Quantitative Data Analyst (Freelance)</h4>
+                <span class="meta" id="exp1-meta">Remote | Jan. 2018 – Present</span>
+                <ul>
+                    <li id="exp1-li1">Development and analysis of algorithmic trading systems using structured financial datasets.</li>
+                    <li id="exp1-li2">Validation of model results through rigorous backtesting, execution logs, and statistical controls (Pandas, SQL).</li>
+                    <li id="exp1-li3">Automation of market data collection (broker feeds, institutional datasets) and performance metrics.</li>
+                    <li id="exp1-li4">Evaluation of volatility, execution frictions, and performance stability across different datasets.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h4 id="exp2-title">Luxor Dish</h4>
+                <span class="meta" id="exp2-meta">Miami, Florida (Hybrid) | Jan. 2024 – Feb. 2026</span>
+                <ul>
+                    <li id="exp2-li1">Founded and managed e-commerce business with comprehensive oversight of procurement, logistics, and distribution operations.</li>
+                    <li id="exp2-li2">Application of data-driven decision making for price optimization, inventory planning, and sales performance.</li>
+                    <li id="exp2-li3">Analysis of operational metrics across B2B and Amazon FBA channels.</li>
+                    <li id="exp2-li4">Development of structured reporting flows to support business decision making.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h4 id="exp3-title">Branch Administration — Borigen Betzel</h4>
+                <span class="meta" id="exp3-meta">Orán, Salta, Argentina | Mar. 2016 – Mar. 2018</span>
+                <ul>
+                    <li id="exp3-li1">Operational and administrative support within the telecommunications sector.</li>
+                    <li id="exp3-li2">Management of inventories, stock reports, and daily cash controls.</li>
+                    <li id="exp3-li3">Support for efficient customer service processes in a high-volume environment.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 id="proj-title"><i class="fas fa-code-branch"></i> Data Projects</h2>
+            <p id="proj-desc">My main projects, code base, and quantitative analyses are documented in my GitHub repository. Click to explore them.</p>
+            
+            <div class="project-item">
+                <h4 id="proj1-title">JPMorgan Chase Quantitative Research Job Simulation</h4>
+                <span class="meta" id="proj1-meta">Skills: Financial Markets, Python, Modeling</span>
+                <p id="proj1-desc">Replica of real challenges for a quantitative analyst in the Commodities & Retail Credit desks, building Python models for price estimation and credit risk management.</p>
+                <a href="https://github.com/gonzalomontebelli/Quantitative-Research-at-JPMorgan-Chase-Job-Simulation-From-Commodities-to-Credit-Risk" target="_blank" class="github-btn"><i class="fab fa-github"></i> View Project on GitHub</a>
+            </div>
+
+            <div class="project-item">
+                <h4 id="proj2-title">Trading Journal html.</h4>
+                <span class="meta" id="proj2-meta">Skills: HTML, Data Analytics, Dashboards</span>
+                <p id="proj2-desc">Offline trading visualization tool for algorithmic US30 strategies, generating an analytical dashboard from CSV data, bot logs, and news calendar.</p>
+                <a href="https://github.com/gonzalomontebelli" target="_blank" class="github-btn"><i class="fab fa-github"></i> View Main Repository</a>
+            </div>
+
+            <div class="project-item">
+                <h4 id="proj3-title">Backtest</h4>
+                <span class="meta" id="proj3-meta">Skills: Algorithmic Trading, Python, SQL, Excel</span>
+                <p id="proj3-desc">Excel KPI dashboard for financial data (DJI) with SQL-based return & volatility analysis, plus a reproducible Python pipeline and Excel reporting framework.</p>
+                <a href="https://github.com/gonzalomontebelli/financial_kpi_dashboard_US30" target="_blank" class="github-btn"><i class="fab fa-github"></i> View Project on GitHub</a>
+            </div>
+        </section>
+
+        <section>
+            <h2 id="edu-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="experience-item">
+                <h4 id="edu1-title">Yale University</h4>
+                <span class="meta" id="edu1-meta">Dec. 2025 – Present</span>
+                <p id="edu1-desc">Online course: Financial Markets (Prof. Robert J. Shiller). Skills: Financial Markets, Risk Management.</p>
+            </div>
+            <div class="experience-item">
+                <h4 id="edu2-title">Universidad Empresarial 'Siglo 21'</h4>
+                <span class="meta" id="edu2-meta">Apr. 2011 – Oct. 2013</span>
+                <p id="edu2-desc">Law (not completed).</p>
+            </div>
+            <div class="experience-item">
+                <h4 id="edu3-title">Instituto Privado Maria del Rosario</h4>
+                <span class="meta" id="edu3-meta">Jan. 2005 – Dec. 2010</span>
+                <p id="edu3-desc">High School, Economic and Law.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 id="tech-title"><i class="fas fa-tools"></i> Tech Stack</h2>
+            <p id="tech1"><strong>Analysis and Modeling:</strong> Python (Pandas, NumPy, Scikit-learn), SQL, Inferential Statistics, Backtesting, Statistical Modeling, Quantitative Modeling.</p>
+            <p id="tech2"><strong>Visualization and Tools:</strong> Tableau, Advanced Excel (Microsoft Excel), GitHub, Structured Dashboards, Algorithmic Trading, E-Commerce, Generative AI Data Analyst.</p>
+        </section>
+    </main>
+
+    <script>
+        const translations = {
+            en: {
+                subtitle: "Data Analyst | Financial Data",
+                bio: "Focused on building data-driven projects in trading performance, market analysis, and financial reporting. Current focus: US30 analytics, backtesting, execution analysis, and financial dashboards.",
+                expTitle: "Professional Experience",
+                projTitle: "Data Projects",
+                projDesc: "My main projects, code base, and quantitative analyses are documented in my GitHub repository. Click to explore them.",
+                eduTitle: "Education",
+                techTitle: "Tech Stack",
+                tech1: "<strong>Analysis and Modeling:</strong> Python (Pandas, NumPy, Scikit-learn), SQL, Inferential Statistics, Backtesting, Statistical Modeling, Quantitative Modeling.",
+                tech2: "<strong>Visualization and Tools:</strong> Tableau, Advanced Excel (Microsoft Excel), GitHub, Structured Dashboards, Algorithmic Trading, E-Commerce, Generative AI Data Analyst.",
+                contactTitle: "Contact & Networks",
+                certTitle: "Interactive Certifications",
+                certDesc: "(Click to verify credential)",
+                langTitle: "Languages",
+                exp1Title: "Quantitative Data Analyst (Freelance)",
+                exp1Meta: "Remote | Jan. 2018 – Present",
+                exp2Title: "Luxor Dish",
+                exp2Meta: "Miami, Florida (Hybrid) | Jan. 2024 – Feb. 2026",
+                exp3Title: "Branch Administration — Borigen Betzel",
+                exp3Meta: "Orán, Salta, Argentina | Mar. 2016 – Mar. 2018",
+                exp1Li1: "Development and analysis of algorithmic trading systems using structured financial datasets.",
+                exp1Li2: "Validation of model results through rigorous backtesting, execution logs, and statistical controls (Pandas, SQL).",
+                exp1Li3: "Automation of market data collection (broker feeds, institutional datasets) and performance metrics.",
+                exp1Li4: "Evaluation of volatility, execution frictions, and performance stability across different datasets.",
+                exp2Li1: "Founded and managed e-commerce business with comprehensive oversight of procurement, logistics, and distribution operations.",
+                exp2Li2: "Application of data-driven decision making for price optimization, inventory planning, and sales performance.",
+                exp2Li3: "Analysis of operational metrics across B2B and Amazon FBA channels.",
+                exp2Li4: "Development of structured reporting flows to support business decision making.",
+                exp3Li1: "Operational and administrative support within the telecommunications sector.",
+                exp3Li2: "Management of inventories, stock reports, and daily cash controls.",
+                exp3Li3: "Support for efficient customer service processes in a high-volume environment.",
+                langLi1: "Spanish: Native",
+                langLi2: "English: Intermediate / Advanced",
+                proj1Meta: "Skills: Financial Markets, Python, Modeling",
+                proj1Desc: "Replica of real challenges for a quantitative analyst in the Commodities & Retail Credit desks, building Python models for price estimation and credit risk management.",
+                proj2Title: "Trading Journal html.",
+                proj2Meta: "Skills: HTML, Data Analytics, Dashboards",
+                proj2Desc: "Offline trading visualization tool for algorithmic US30 strategies, generating an analytical dashboard from CSV data, bot logs, and news calendar.",
+                proj3Title: "Backtest",
+                proj3Meta: "Skills: Algorithmic Trading, Python, SQL, Excel",
+                proj3Desc: "Excel KPI dashboard for financial data (DJI) with SQL-based return & volatility analysis, plus a reproducible Python pipeline and Excel reporting framework.",
+                edu1Title: "Yale University",
+                edu1Meta: "Dec. 2025 – Present",
+                edu1Desc: "Online course: Financial Markets (Prof. Robert J. Shiller). Skills: Financial Markets, Risk Management.",
+                edu2Title: "Universidad Empresarial 'Siglo 21'",
+                edu2Meta: "Apr. 2011 – Oct. 2013",
+                edu2Desc: "Law (not completed).",
+                edu3Title: "Instituto Privado Maria del Rosario",
+                edu3Meta: "Jan. 2005 – Dec. 2010",
+                edu3Desc: "High School, Economic and Law."
+            },
+            es: {
+                subtitle: "Analista de Datos | Datos Financieros",
+                bio: "Enfocado en construir proyectos basados en datos en rendimiento de trading, análisis de mercado e informes financieros. Enfoque actual: análisis US30, backtesting, análisis de ejecución y dashboards financieros.",
+                expTitle: "Experiencia Profesional",
+                projTitle: "Proyectos de Datos",
+                projDesc: "Mis proyectos principales, código base y análisis cuantitativos están documentados en mi repositorio de GitHub. Haz clic para explorarlos.",
+                eduTitle: "Educación",
+                techTitle: "Stack Tecnológico",
+                tech1: "<strong>Análisis y Modelado:</strong> Python (Pandas, NumPy, Scikit-learn), SQL, Estadística Inferencial, Backtesting, Modelado Estadístico, Modelado Cuantitativo.",
+                tech2: "<strong>Visualización y Herramientas:</strong> Tableau, Excel Avanzado (Microsoft Excel), GitHub, Dashboards Estructurados, Trading Algorítmico, E-Commerce, Generative AI Data Analyst.",
+                contactTitle: "Contacto & Redes",
+                certTitle: "Certificaciones Interactivas",
+                certDesc: "(Clic para verificar credencial)",
+                langTitle: "Idiomas",
+                exp1Title: "Analista Cuantitativo de Datos (Autónomo)",
+                exp1Meta: "Remoto | Ene. 2018 – Presente",
+                exp2Title: "Luxor Dish",
+                exp2Meta: "Miami, Florida (Híbrido) | Ene. 2024 – Feb. 2026",
+                exp3Title: "Administración de Sucursal — Borigen Betzel",
+                exp3Meta: "Orán, Salta, Argentina | Mar. 2016 – Mar. 2018",
+                exp1Li1: "Desarrollo y análisis de sistemas de trading algorítmico utilizando conjuntos de datos financieros estructurados.",
+                exp1Li2: "Validación de resultados de modelos mediante backtesting estricto, registros de ejecución y controles estadísticos (Pandas, SQL).",
+                exp1Li3: "Automatización de la recopilación de datos de mercado (feeds de brokers, datasets institucionales) y métricas de rendimiento.",
+                exp1Li4: "Evaluación de volatilidad, fricciones de ejecución y estabilidad del rendimiento en distintos conjuntos de datos.",
+                exp2Li1: "Fundé y gestioné negocio de e-commerce con supervisión integral de operaciones de aprovisionamiento, logística y distribución.",
+                exp2Li2: "Aplicación de toma de decisiones basada en datos para optimización de precios, planificación de inventario y rendimiento de ventas.",
+                exp2Li3: "Análisis de métricas operativas en canales B2B y Amazon FBA.",
+                exp2Li4: "Desarrollo de flujos de reportes estructurados para apoyar la toma de decisiones del negocio.",
+                exp3Li1: "Soporte operativo y administrativo dentro del sector de telecomunicaciones.",
+                exp3Li2: "Gestión de inventarios, reportes de stock y controles de caja diaria.",
+                exp3Li3: "Apoyo en procesos eficientes de atención al cliente en un entorno de alto volumen.",
+                langLi1: "Español: Nativo",
+                langLi2: "Inglés: Intermedio / Avanzado",
+                proj1Meta: "Habilidades: Mercados Financieros, Python, Modelado",
+                proj1Desc: "Réplica de desafíos reales para un analista cuantitativo en las mesas de Commodities & Retail Credit, construyendo modelos Python para estimación de precios y gestión de riesgo de crédito.",
+                proj2Title: "Diario de Trading html.",
+                proj2Meta: "Habilidades: HTML, Análisis de Datos, Dashboards",
+                proj2Desc: "Herramienta de visualización de trading offline para estrategias US30 algorítmicas, generando un dashboard analítico a partir de datos CSV, logs de bot y calendario de noticias.",
+                proj3Title: "Backtest",
+                proj3Meta: "Habilidades: Trading Algorítmico, Python, SQL, Excel",
+                proj3Desc: "Dashboard Excel KPI para datos financieros (DJI) con análisis basado en SQL de retorno y volatilidad, más una pipeline Python reproducible y marco de reportes Excel.",
+                edu1Title: "Universidad de Yale",
+                edu1Meta: "Dic. 2025 – Actualidad",
+                edu1Desc: "Curso online: Mercados Financieros (Prof. Robert J. Shiller). Habilidades: Mercados Financieros, Gestión de Riesgos.",
+                edu2Title: "Universidad Empresarial 'Siglo 21'",
+                edu2Meta: "Abr. 2011 – Oct. 2013",
+                edu2Desc: "Derecho (no completado).",
+                edu3Title: "Instituto Privado Maria del Rosario",
+                edu3Meta: "Ene. 2005 – Dic. 2010",
+                edu3Desc: "Bachillerato, Economía y Derecho."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            document.getElementById('lang-toggle').textContent = currentLang === 'en' ? 'ES' : 'EN';
+
+            // Update all elements
+            document.getElementById('subtitle').textContent = translations[currentLang].subtitle;
+            document.getElementById('bio').textContent = translations[currentLang].bio;
+            document.getElementById('exp-title').innerHTML = '<i class="fas fa-briefcase"></i> ' + translations[currentLang].expTitle;
+            document.getElementById('proj-title').innerHTML = '<i class="fas fa-code-branch"></i> ' + translations[currentLang].projTitle;
+            document.getElementById('proj-desc').textContent = translations[currentLang].projDesc;
+            document.getElementById('edu-title').innerHTML = '<i class="fas fa-graduation-cap"></i> ' + translations[currentLang].eduTitle;
+            document.getElementById('tech-title').innerHTML = '<i class="fas fa-tools"></i> ' + translations[currentLang].techTitle;
+            document.getElementById('tech1').innerHTML = translations[currentLang].tech1;
+            document.getElementById('tech2').innerHTML = translations[currentLang].tech2;
+            document.getElementById('contact-title').textContent = translations[currentLang].contactTitle;
+            document.getElementById('cert-title').textContent = translations[currentLang].certTitle;
+            document.getElementById('cert-desc').textContent = translations[currentLang].certDesc;
+            document.getElementById('lang-title').textContent = translations[currentLang].langTitle;
+            document.getElementById('exp1-title').textContent = translations[currentLang].exp1Title;
+            document.getElementById('exp1-meta').textContent = translations[currentLang].exp1Meta;
+            document.getElementById('exp2-title').textContent = translations[currentLang].exp2Title;
+            document.getElementById('exp2-meta').textContent = translations[currentLang].exp2Meta;
+            document.getElementById('exp3-title').textContent = translations[currentLang].exp3Title;
+            document.getElementById('exp3-meta').textContent = translations[currentLang].exp3Meta;
+            document.getElementById('proj1-title').textContent = translations[currentLang].proj1Title;
+            document.getElementById('proj1-meta').textContent = translations[currentLang].proj1Meta;
+            document.getElementById('proj1-desc').textContent = translations[currentLang].proj1Desc;
+            document.getElementById('proj2-title').textContent = translations[currentLang].proj2Title;
+            document.getElementById('proj2-meta').textContent = translations[currentLang].proj2Meta;
+            document.getElementById('proj2-desc').textContent = translations[currentLang].proj2Desc;
+            document.getElementById('proj3-title').textContent = translations[currentLang].proj3Title;
+            document.getElementById('proj3-meta').textContent = translations[currentLang].proj3Meta;
+            document.getElementById('proj3-desc').textContent = translations[currentLang].proj3Desc;
+            document.getElementById('edu1-title').textContent = translations[currentLang].edu1Title;
+            document.getElementById('edu1-meta').textContent = translations[currentLang].edu1Meta;
+            document.getElementById('edu1-desc').textContent = translations[currentLang].edu1Desc;
+            document.getElementById('edu2-title').textContent = translations[currentLang].edu2Title;
+            document.getElementById('edu2-meta').textContent = translations[currentLang].edu2Meta;
+            document.getElementById('edu2-desc').textContent = translations[currentLang].edu2Desc;
+            document.getElementById('edu3-title').textContent = translations[currentLang].edu3Title;
+            document.getElementById('edu3-meta').textContent = translations[currentLang].edu3Meta;
+            document.getElementById('edu3-desc').textContent = translations[currentLang].edu3Desc;
+            document.getElementById('exp1-li1').textContent = translations[currentLang].exp1Li1;
+            document.getElementById('exp1-li2').textContent = translations[currentLang].exp1Li2;
+            document.getElementById('exp1-li3').textContent = translations[currentLang].exp1Li3;
+            document.getElementById('exp1-li4').textContent = translations[currentLang].exp1Li4;
+            document.getElementById('exp2-li1').textContent = translations[currentLang].exp2Li1;
+            document.getElementById('exp2-li2').textContent = translations[currentLang].exp2Li2;
+            document.getElementById('exp2-li3').textContent = translations[currentLang].exp2Li3;
+            document.getElementById('exp2-li4').textContent = translations[currentLang].exp2Li4;
+            document.getElementById('exp3-li1').textContent = translations[currentLang].exp3Li1;
+            document.getElementById('exp3-li2').textContent = translations[currentLang].exp3Li2;
+            document.getElementById('exp3-li3').textContent = translations[currentLang].exp3Li3;
+            document.getElementById('lang-li1').innerHTML = '<i class="fas fa-language"></i> ' + translations[currentLang].langLi1;
+            document.getElementById('lang-li2').innerHTML = '<i class="fas fa-language"></i> ' + translations[currentLang].langLi2;
+        }
+    </script>
+</body>
+</html>
